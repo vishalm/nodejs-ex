@@ -13,10 +13,5 @@ steps:
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
-    cmd: 'oc start-build nodejs-ex --follow'
-    uselocalOc: true
-- task: oc-cmd@2
-  inputs:
-    openshiftService: 'My Openshift'
-    cmd: 'oc status'
-    uselocalOc: true
+    version: 'https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.1/linux/oc.tar.gz'
+    cmd: 'oc version'
