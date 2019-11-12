@@ -13,5 +13,5 @@ steps:
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
+    version: 'https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.1/linux/oc.tar.gz'
     cmd: 'oc version'
-    uselocalOc: true
