@@ -18,4 +18,5 @@ jobs:
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'get pods'
-          'version'  
+          'version'
+          'status'  
