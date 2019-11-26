@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Test action
-      uses: ./ocExec
+      uses: ./actions
       id: test
       with:
         version: 'latest'
