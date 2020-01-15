@@ -13,10 +13,10 @@ jobs:
       uses: ./actions
       id: test
       with:
-        version: 'latest'
+        version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'version'
-          'start-build nodejs-ex --follow'
+          'get pods'
           'status'
