@@ -9,9 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Test action
-      uses: ./actions
-      id: test
+    - name: OpenShift Action
+      uses: redhat-developer/openshift-actions@v1.0
       with:
         version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
