@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v1.0
       with:
