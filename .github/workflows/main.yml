@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: TestLucaAction
-      uses: lstocchi/openshift-actions@v.1.1
+      uses: lstocchi/openshift-actions@v1.1
       with:
         version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
