@@ -8,5 +8,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo $process.env['GITHUB_ACTION']
+    - name: OpenShift Action
+      uses: redhat-developer/openshift-actions@v.1.1
+      with:
+        version: '3.11.163'
+        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        cmd: |
+          'version'
+          'get pods'
+          'status'
