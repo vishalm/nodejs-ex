@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: TestLucaAction
-      uses: lstocchi/openshift-actions@v1.4
+      uses: lstocchi/openshift-actions@v1.5
       with:
         version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
