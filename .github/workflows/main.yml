@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: TestLucaAction
-      uses: lstocchi/openshift-actions@v1.5
+    - name: OpenShift Action
+      uses: redhat-developer/openshift-actions@v1.1
       with:
         version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
