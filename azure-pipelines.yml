@@ -15,8 +15,10 @@ pool:
   name: 'Default'  
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
     openshiftService: 'My Openshift'
-    version: '4.1'
-    cmd: 'oc version > /home/luca/Public/azure/outputnn.yaml'
+    version: '3.11'
+# A script task making use of 'oc'    
+- script: |
+    oc get pods > /home/luca/Public/azure/outputnn.yaml
