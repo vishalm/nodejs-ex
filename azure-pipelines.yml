@@ -10,7 +10,8 @@ pool:
   name: 'WindowsLocal'  
 
 steps:
-- bash: echo %cd%
+- script: echo %cd%
+  displayName: 'echo'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
