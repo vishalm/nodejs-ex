@@ -6,16 +6,17 @@
 # displayName: 'echo'
 #- script: 'echo "cicciopasticcio" > C:\Users\Luca\Documents\output.yaml'
 #  displayName: 'ciccio'
+# name: 'WindowsLocal' 
 
 trigger:
 - master
 
 pool:
-  name: 'WindowsLocal'  
+  name: 'Default'  
 
 steps:
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
     version: '4.1'
-    cmd: 'oc version >C:\Users\Luca\Documents\outputnn.yaml'
+    cmd: 'oc version > /home/luca/Public/azure/outputnn.yaml'
