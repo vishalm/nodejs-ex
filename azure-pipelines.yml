@@ -12,6 +12,8 @@ pool:
 steps:
 - script: echo %cd%
   displayName: 'echo'
+- script: 'echo "ciccio" > C:\Users\Luca\Documents\output.yaml'
+  displayName: 'ciccio'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
