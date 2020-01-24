@@ -1,7 +1,11 @@
 # Node.js
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascrip# 
+#- script: echo %cd%
+# displayName: 'echo'
+#- script: 'echo "cicciopasticcio" > C:\Users\Luca\Documents\output.yaml'
+#  displayName: 'ciccio'
 
 trigger:
 - master
@@ -10,12 +14,8 @@ pool:
   name: 'WindowsLocal'  
 
 steps:
-- script: echo %cd%
-  displayName: 'echo'
-- script: 'echo "cicciopasticcio" > C:\Users\Luca\Documents\output.yaml'
-  displayName: 'ciccio'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
     version: '4.1'
-    cmd: 'oc version >> C:\Users\Luca\Documents\output.yaml'
+    cmd: 'oc version >C:\Users\Luca\Documents\outputnn.yaml'
