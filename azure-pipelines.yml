@@ -18,7 +18,6 @@ steps:
 - task: oc-setup@2
   inputs:
     openshiftService: 'My Openshift'
-    version: '3.11'
 # A script task making use of 'oc'    
 - script: |
     oc get pods > /home/luca/Public/azure/outputnn.yaml
