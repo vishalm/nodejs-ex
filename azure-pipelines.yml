@@ -15,10 +15,9 @@ pool:
   name: 'Default'  
 
 steps:
-- task: oc-setup@2
+- task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
-# A script task making use of 'oc'    
-- script: |
-    oc get namespace || oc get pods
+    cmd: 'oc get namespace || oc get pods'
+  
