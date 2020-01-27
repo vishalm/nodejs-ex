@@ -19,5 +19,5 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
-    cmd: 'oc get pods > /home/luca/Public/outputh.txt'
+    cmd: 'oc describe pod nodejs-ex-3-zbhb6|grep IP > output33.txt'
   
