@@ -14,7 +14,6 @@ jobs:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
-          'version'
-          'get pods'
-          'status'
+          'version '
+          'get pods | grep node'
 
