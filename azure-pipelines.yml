@@ -12,7 +12,7 @@ trigger:
 - master
 
 pool:
-  name: 'Default'  
+  name: 'WindowsLocal'  
 
 steps:
 - task: oc-cmd@2
