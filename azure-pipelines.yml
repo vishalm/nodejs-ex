@@ -7,17 +7,18 @@
 #- script: 'echo "cicciopasticcio" > C:\Users\Luca\Documents\output.yaml'
 #  displayName: 'ciccio'
 # name: 'WindowsLocal' 
+# version: '3.11.154'
 
 trigger:
 - master
 
 pool:
-  name: 'WindowsLocal'  
+  name: 'Default'  
 
 steps:
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
-    version: '3.11.154'
-    cmd: 'oc get pods'
+    cmd: 'oc get pods | grep node > /home/luca/Public/output.txt'
+    uselocalOc: true
   
