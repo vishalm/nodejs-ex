@@ -19,6 +19,6 @@ steps:
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-3-xtnqn | grep kubernetes | grep node'
+    cmd: 'oc describe pod/nodejs-ex-3-xtnqn | grep kubernetes | grep node > /home/luca/Public/output2.txt'
     uselocalOc: true
   
