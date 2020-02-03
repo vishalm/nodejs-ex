@@ -20,7 +20,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'macOS-latest'
+  name: 'Default'
 
 steps:
 - task: oc-setup@2
