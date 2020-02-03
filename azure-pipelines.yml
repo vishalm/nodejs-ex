@@ -10,6 +10,11 @@
 # version: '3.11.154'
 # name: 'Default'
 # vmImage: 'ubuntu-latest' 
+# - task: oc-cmd@2
+#  inputs:
+#    version: '3.7'
+#    openshiftService: 'My Openshift'
+#    cmd: 'oc describe pod/nodejs-ex-3-xtnqn'
 
 trigger:
 - master
@@ -18,9 +23,11 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
-    version: '3.7'
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-3-xtnqn'
+    version: '3.7'
+- task: CmdLine@2
+  inputs:
+    script: 'oc get pods'
   
