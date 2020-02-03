@@ -9,12 +9,13 @@
 # name: 'WindowsLocal' 
 # version: '3.11.154'
 # name: 'Default'
+# vmImage: 'ubuntu-latest' 
 
 trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'  
+  name: 'Default' 
 
 steps:
 - task: oc-cmd@2
