@@ -8,17 +8,18 @@
 #  displayName: 'ciccio'
 # name: 'WindowsLocal' 
 # version: '3.11.154'
+# name: 'Default'
 
 trigger:
 - master
 
 pool:
-  name: 'Default'  
+  vmImage: 'ubuntu-latest'  
 
 steps:
 - task: oc-cmd@2
   inputs:
+    version: '3.11'
     openshiftService: 'My Openshift'
     cmd: 'oc describe pod/nodejs-ex-3-xtnqn'
-    uselocalOc: true
   
