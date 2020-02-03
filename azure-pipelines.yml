@@ -15,7 +15,7 @@ trigger:
 - master
 
 pool:
-  name: 'Default' 
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: oc-cmd@2
