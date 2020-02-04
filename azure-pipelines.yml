@@ -28,4 +28,5 @@ steps:
     openshiftService: 'My Openshift'
     cmd: 'oc describe pod/nodejs-ex-3-xtnqn | grep nodes >> /home/luca/Public/output.txt 2> /home/luca/Public/error.txt'
     uselocalOc: true
+    ignoreFlag: true
   
