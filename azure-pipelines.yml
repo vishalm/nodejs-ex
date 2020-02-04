@@ -23,11 +23,9 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-setup@2
+- task: oc-cmd@2
   inputs:
-    openshiftService: 'My Openshift'
     version: '3.7'
-- task: CmdLine@2
-  inputs:
-    script: 'oc get pods'
+    openshiftService: 'My Openshift'
+    cmd: 'oc describe pod/nodejs-ex-3-xtnqn | grep node > /home/luca/Public/output.txt'
   
