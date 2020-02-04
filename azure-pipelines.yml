@@ -28,5 +28,4 @@ steps:
     openshiftService: 'My Openshift'
     cmd: 'oc describe pod/nodejs-ex-3-xtnqn | grep mac nodes.log >> /home/luca/Public/output.txt 2> /home/luca/Public/error1.txt'
     uselocalOc: true
-    ignoreFlag: true
   
