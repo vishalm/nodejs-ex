@@ -27,6 +27,5 @@ steps:
   inputs:
     version: '3.11'
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-3-xtnqn'
-    proxy: '134.209.85.26:8080'
+    cmd: 'oc describe pod/nodejs-ex-1-9dbf5'
   
