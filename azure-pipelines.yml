@@ -20,12 +20,12 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'Default'
 
 steps:
 - task: oc-cmd@2
   inputs:
     version: '3.11'
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-1-9dbf5'
+    cmd: 'oc describe pod/nodejs-ex-1-9dbf5 | grep node > /home/luca/Public/outciccio.txt'
   
