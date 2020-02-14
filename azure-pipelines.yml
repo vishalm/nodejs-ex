@@ -25,7 +25,7 @@ pool:
 steps:
 - task: oc-cmd@2
   inputs:
-    version: '3.11'
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep kubernetes > /home/luca/Public/outpasticcio.txt'
+    cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep node > /home/luca/Public/outlocal.txt'
+    uselocalOc: true
   
