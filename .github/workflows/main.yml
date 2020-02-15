@@ -4,16 +4,16 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-    - name: OpenShift Action
-      uses: redhat-developer/openshift-actions@v1.1
+    - name: TestLucaAction
+      uses: lstocchi/openshift-actions@1.6.1
       with:
-        version: '3.11.163'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'version '
-          'get pods | grep node'
+          'get pods'
+        useLocalOc: 'true'
 
