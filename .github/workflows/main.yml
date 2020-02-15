@@ -10,6 +10,7 @@ jobs:
     - name: TestLucaAction
       uses: lstocchi/openshift-actions@1.6.1
       with:
+        version: '3.11.96'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
