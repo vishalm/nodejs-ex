@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: TestLucaAction
-      uses: lstocchi/openshift-actions@1.6.2
+      uses: lstocchi/openshift-actions@1.6.3
       with:
         version: ''
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
@@ -16,4 +16,5 @@ jobs:
         cmd: |
           'version '
           'get pods'
+        proxy: '113.53.230.167:80'
 
