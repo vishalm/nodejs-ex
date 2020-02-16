@@ -14,7 +14,6 @@ jobs:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
-          'version '
+          'version'
           'get pods'
-        proxy: 'http://7e298c0a.ngrok.io/'
 
