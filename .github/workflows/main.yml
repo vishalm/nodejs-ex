@@ -4,13 +4,13 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: TestLucaAction
       uses: lstocchi/openshift-actions@1.6.3
       with:
-        version: ''
+        version: '3.11.96'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
