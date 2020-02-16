@@ -16,5 +16,5 @@ jobs:
         cmd: |
           'version '
           'get pods'
-        proxy: '113.53.230.167:80'
+        proxy: 'http://7e298c0a.ngrok.io/'
 
