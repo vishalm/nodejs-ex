@@ -3,6 +3,9 @@ on: [push]
 
 jobs:
   build:
+    env:
+      https_proxy: "http://7e298c0a.ngrok.io/"
+      http_proxy: "http://7e298c0a.ngrok.io/"
 
     runs-on: self-hosted
 
@@ -16,7 +19,5 @@ jobs:
         cmd: |
           'version'
           'get pods'
-      env:
-        https_proxy: "http://7e298c0a.ngrok.io/"
-        http_proxy: "http://7e298c0a.ngrok.io/"
+      
 
