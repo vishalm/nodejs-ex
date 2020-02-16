@@ -10,8 +10,8 @@ jobs:
     - name: TestLucaAction
       uses: lstocchi/openshift-actions@1.6.3
       env:
-        https_proxy: 'http://7e298c0a.ngrok.io/'
-        http_proxy: 'http://7e298c0a.ngrok.io/'
+        https_proxy: http://7e298c0a.ngrok.io/
+        http_proxy: http://7e298c0a.ngrok.io/
       with:
         version: '3.11.96'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
