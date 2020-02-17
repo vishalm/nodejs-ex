@@ -14,7 +14,7 @@ jobs:
         inputs:
           openshiftService: 'My Openshift'
           version: '3.11'
-          cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep node'
+          cmd: 'oc get pods'
   - job: macOS
     pool:
       name: Hosted macOS
@@ -24,7 +24,7 @@ jobs:
         inputs:
           openshiftService: 'My Openshift'
           version: '3.11'
-          cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep node'
+          cmd: 'get pods'
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -33,4 +33,4 @@ jobs:
         inputs:
           openshiftService: 'My Openshift'
           version: '3.11'
-          cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep node'
+          cmd: 'version'
