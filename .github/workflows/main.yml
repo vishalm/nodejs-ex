@@ -7,8 +7,8 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
-    - name: TestLucaAction
-      uses: lstocchi/openshift-actions@1.6.4
+    - name: OpenShift Action
+      uses: redhat-developer/openshift-actions@v2.0
       with:
         version: '3.11.96'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
