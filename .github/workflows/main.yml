@@ -3,15 +3,12 @@ on: [push]
 
 jobs:
   build:
-    env:
-      HTTPS_PROXY: "181.30.28.12:3128"
-      HTTP_PROXY: "181.30.28.12:3128"
-
-    runs-on: self-hosted
+   
+    runs-on: [ubuntu-latest]
 
     steps:
     - name: TestLucaAction
-      uses: lstocchi/openshift-actions@1.6.3
+      uses: lstocchi/openshift-actions@1.6.4
       with:
         version: '3.11.96'
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
