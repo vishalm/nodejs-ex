@@ -23,9 +23,9 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
+    connectionType: 'OpenShift Connection Service'
     openshiftService: 'My Openshift'
-    cmd: 'oc describe pod/nodejs-ex-1-5gj6s | grep node > /home/luca/Public/outnew.txt'
-    uselocalOc: true
+    version: '3.11.154'
   
