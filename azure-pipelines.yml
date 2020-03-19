@@ -33,8 +33,8 @@ steps:
       SECONDS=0   # Reset $SECONDS; counting of seconds will (re)start from 0(-ish).
       while (( SECONDS < secs )); do    # Loop until interval has elapsed.
         sleep 5
-        dcres=$(oc get dc -l name='mydeploy' | wc -l)
-        if $dcres>0
+        res=$(oc get dc -l name='mydeploy' | wc -l)
+        if ! echo $res | grep -q '0'
         then
           oc logs $(oc get dc -l name='mydeploy' -o name)
           break
