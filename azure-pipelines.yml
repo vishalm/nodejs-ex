@@ -50,6 +50,7 @@ steps:
         if oc get dc -l name='mydeploy' -o name | grep -q ''
         then
           oc logs $(oc get dc -l name='mydeploy' -o name)
+          done;
         fi
       done
 - task: Bash@3
