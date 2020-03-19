@@ -28,11 +28,10 @@ steps:
     openshiftService: 'My Openshift'
     cmd: 'oc new-build nodejs~https://github.com/sclorg/nodejs-ex -l name=mybuild'
     uselocalOc: true
-- task: oc-cmd@2
+- task: PowerShell@2
   inputs:
-    openshiftService: 'My Openshift'
-    uselocalOc: true
-    cmd: 'oc logs $(oc get bc -l name="mybuild" --output="name")'
+    targetType: 'inline'
+    script: 'oc logs $(oc get bc -l name="mybuild" --output="name")'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
