@@ -23,24 +23,6 @@ pool:
   name: 'Default'
 
 steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      secs=3600   # Set interval (duration) in seconds.
-      
-      SECONDS=0   # Reset $SECONDS; counting of seconds will (re)start from 0(-ish).
-      while (( SECONDS < secs )); do    # Loop until interval has elapsed.
-        sleep 5
-        if oc get dc -l name='mydeploy3232' -o name | grep -q ''
-        then
-          echo 'ciao'
-        else
-          echo 'errore'
-        fi
-        echo SECONDS
-      done
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
@@ -58,7 +40,18 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'oc logs $(oc get dc -l name=''mydeploy'' -o name) --follow=true'
+    script: |
+      # Write your commands here
+      secs=3600   # Set interval (duration) in seconds.
+      
+      SECONDS=0   # Reset $SECONDS; counting of seconds will (re)start from 0(-ish).
+      while (( SECONDS < secs )); do    # Loop until interval has elapsed.
+        sleep 5
+        if oc get dc -l name='mydeploy' -o name | grep -q ''
+        then
+          oc logs $(oc get dc -l name='mydeploy' -o name)
+        fi
+      done
 - task: Bash@3
   inputs:
     targetType: 'inline'
