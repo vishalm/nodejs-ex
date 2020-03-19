@@ -23,9 +23,28 @@ pool:
   name: 'Default'
 
 steps:
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    cmd: 'oc new-build nodejs~https://github.com/sclorg/nodejs-ex -l name=mybuild'
+    uselocalOc: true
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: 'oc logs $(oc get bc -l name=''mybuild'' -o name)'
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    cmd: 'oc start-build nodejs-ex --follow=true'
+    uselocalOc: true
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    uselocalOc: true
+    cmd: 'oc new-app nodejs-ex -l name=mydeploy'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'oc logs $(oc get dc -l name=''mydeploy'' -o "name")'
 
   
