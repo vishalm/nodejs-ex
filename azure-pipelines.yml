@@ -40,7 +40,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'oc logs $(oc get dc -l name=''mydeploy'' -o name) --pod-running-timeout=200s'
+    script: 'oc logs $(oc get dc -l name=''mydeploy'' -o name) --follow=true'
 - task: Bash@3
   inputs:
     targetType: 'inline'
