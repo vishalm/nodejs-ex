@@ -33,7 +33,7 @@ steps:
       SECONDS=0   # Reset $SECONDS; counting of seconds will (re)start from 0(-ish).
       while (( SECONDS < secs )); do    # Loop until interval has elapsed.
         sleep 5
-        if oc get dc -l name='mydeploy2' -o name
+        if oc get dc -l name='mydeploy' -o name | grep -q ''
         then
           echo 'ciao'
         else
