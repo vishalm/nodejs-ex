@@ -32,7 +32,7 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     uselocalOc: true
-    cmd: 'oc logs $(oc get bc -l name="mybuild" -o name)'
+    cmd: 'oc logs $(oc get bc -l name="mybuild" --output="name")'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
@@ -42,5 +42,5 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     uselocalOc: true
-    cmd: 'oc logs $(oc get dc -l name="mydeploy" -o name)'
+    cmd: 'oc logs $(oc get dc -l name="mydeploy" --output="name")'
   
