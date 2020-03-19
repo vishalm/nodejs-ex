@@ -27,5 +27,20 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
-    cmd: 'oc start-build girishvarun/node-js-sample:3.0 --follow'
+    cmd: 'oc new-build nodejs~https://github.com/sclorg/nodejs-ex -l name=mybuild'
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    version: '3.11.154'
+    cmd: 'oc logs $(oc get bc -l name=''mybuild'' -o name)'
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    version: '3.11.154'
+    cmd: 'oc new-app nodejs-ex -l name=mydeploy'
+- task: oc-cmd@2
+  inputs:
+    openshiftService: 'My Openshift'
+    version: '3.11.154'
+    cmd: 'oc logs $(oc get dc -l name=''mydeploy'' -o name)'
   
