@@ -34,6 +34,7 @@ steps:
       while (( SECONDS < secs )); do    # Loop until interval has elapsed.
         sleep 5
         dcres = oc get dc -l name='mydeploy' | wc -l
+        sleep 2
         if $dcres > 0
         then
           oc logs $(oc get dc -l name='mydeploy' -o name)
