@@ -23,12 +23,11 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-cmd@2
+- task: SSH@0
   inputs:
-    openshiftService: 'My Openshift'
-    cmd: 'oc new-build nodejs~https://github.com/sclorg/nodejs-ex -l name=mybuild'
-    uselocalOc: true
-- script: oc logs $(oc get bc -l name="mybuild" --output="name")
+    runOptions: 'inline'
+    inline: 'oc logs $(oc get bc -l name="mybuild" --output="name")'
+    readyTimeout: '20000'
 - task: oc-cmd@2
   inputs:
     openshiftService: 'My Openshift'
