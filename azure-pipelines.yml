@@ -23,19 +23,9 @@ pool:
   name: 'Default'
 
 steps:
-- task: SSH@0
+- task: Bash@3
   inputs:
-    runOptions: 'inline'
-    inline: 'oc logs $(oc get bc -l name="mybuild" --output="name")'
-    readyTimeout: '20000'
-- task: oc-cmd@2
-  inputs:
-    openshiftService: 'My Openshift'
-    uselocalOc: true
-    cmd: 'oc new-app nodejs-ex -l name=mydeploy'
-- task: oc-cmd@2
-  inputs:
-    openshiftService: 'My Openshift'
-    uselocalOc: true
-    cmd: 'oc logs $(oc get dc -l name="mydeploy" --output="name")'
+    targetType: 'inline'
+    script: 'oc get bc -l name=''mybuild'' -o name'
+
   
