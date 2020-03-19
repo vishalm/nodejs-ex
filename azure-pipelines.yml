@@ -27,5 +27,5 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
-    cmd: 'oc new-app girishvarun/node-js-sample:3.0'
+    cmd: 'oc new-app girishvarun/node-js-sample:3.0 --follow'
   
