@@ -26,6 +26,6 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'oc get bc -l name=''mybuild'' -o name'
+    script: 'oc logs $(oc get bc -l name=''mybuild'' -o name)'
 
   
