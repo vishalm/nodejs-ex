@@ -35,7 +35,7 @@ steps:
         sleep 5
         #res=$(oc get dc -l name='mydeploy' | wc -l)
         for dc in $(oc get dc -l name='mydeploy' | awk 'NR>1{print $1}'); do
-          if [[ "$1" != Error* && "$1" != No* && "$1" != ""]] then
+          if "$1" != Error* && "$1" != No* && "$1" != "" then
             oc logs $(oc get dc -l name='mydeploy' -o name)
             break
           fi
