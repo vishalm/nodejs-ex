@@ -49,6 +49,7 @@ steps:
         sleep 5
         res=$(oc get dc -l name='mydeploy' -o name 2> /dev/null)
         #for dc in $(oc get dc -l name='mydeploy' | awk 'NR>1{print $1}'); do
+        echo $res
         if [ "$res" != "" ]; then
           oc logs $(oc get dc -l name='mydeploy' -o name)
           break
