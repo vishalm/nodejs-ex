@@ -49,7 +49,7 @@ steps:
         sleep 5
         res=$(oc get dc -l name='mydeploy' -o name)
         #for dc in $(oc get dc -l name='mydeploy' | awk 'NR>1{print $1}'); do
-        if [ "$res" != "" && "$res" != Error* ]; then
+        if [[ "$res" != "" && "$res" != Error* ]]; then
           oc logs $(oc get dc -l name='mydeploy' -o name)
           break
         fi
