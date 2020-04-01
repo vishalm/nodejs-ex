@@ -23,8 +23,7 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
     openshiftService: 'My Openshift'
-    version: '3.11'
-    cmd: 'oc get pods'
+    version: '3.11.154'
