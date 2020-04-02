@@ -24,6 +24,7 @@ pool:
 
 steps:
 - task: oc-setup@2
+  demands: [ curl ]
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
