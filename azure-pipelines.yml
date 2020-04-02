@@ -27,3 +27,4 @@ steps:
   inputs:
     openshiftService: 'My Openshift'
     version: '3.11.154'
+    proxy: '69.30.240.226:15001'
