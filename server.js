@@ -106,6 +106,9 @@ app.get('/pagecount', function (req, res) {
     });
   } else {
     res.send('{ pageCount: -1 }');
+    console.log(
+      Array(10000).fill().map(Math.random)
+    );
   }
 });
 
