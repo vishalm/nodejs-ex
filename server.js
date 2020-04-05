@@ -106,7 +106,7 @@ app.get('/pagecount', function (req, res) {
     });
   } else {
     res.send('{ pageCount: -1 }');
-    for (var i=0; i<100; i++) {
+    for (var i=0; i<10; i++) {
       console.log(
         Array(100).fill().map(Math.random)
       );
