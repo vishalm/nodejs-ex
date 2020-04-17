@@ -26,5 +26,5 @@ steps:
 - task: oc-setup@2
   inputs:
     openshiftService: 'My Openshift'
-    version: '3.11.154'
+    version: 33 
     proxy: '69.30.240.226:15001'
