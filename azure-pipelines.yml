@@ -23,11 +23,55 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-conditional-cmd@2
+- task: oc-cmd@2
   inputs:
     connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
+    configurationType: 'inline'
+    inlineConfig: |
+      apiVersion: v1
+      clusters:
+      - cluster:
+          insecure-skip-tls-verify: true
+          server: https://api.crc.testing:6443
+        name: api-crc-testing:6443
+      contexts:
+      - context:
+          cluster: api-crc-testing:6443
+          user: developer/api-crc-testing:6443
+        name: /api-crc-testing:6443/developer
+      - context:
+          cluster: api-crc-testing:6443
+          user: system:serviceaccount:hello-openshift:robot/api-crc-testing:6443
+        name: /api-crc-testing:6443/system:serviceaccount:hello-openshift:robot
+      - context:
+          cluster: api-crc-testing:6443
+          namespace: default
+          user: kube:admin/api-crc-testing:6443
+        name: default/api-crc-testing:6443/kube:admin
+      - context:
+          cluster: api-crc-testing:6443
+          namespace: demo-tekton
+          user: kube:admin/api-crc-testing:6443
+        name: demo-tekton/api-crc-testing:6443/kube:admin
+      - context:
+          cluster: api-crc-testing:6443
+          namespace: pipeline-test
+          user: kube:admin/api-crc-testing:6443
+        name: pipeline-test/api-crc-testing:6443/kube:admin
+      - context:
+          cluster: api-crc-testing:6443
+          namespace: hello-openshift
+          user: kube:admin/api-crc-testing:6443
+        name: hello-openshift/api-crc-testing:6443/kube:admin
+      current-context: pipeline-test/api-crc-testing:6443/kube:admin
+      kind: Config
+      preferences: {}
+      users:
+      - name: developer/api-crc-testing:6443
+        user:
+          token: HoxJmwr2rwoG9EVz9y01cSqyePvyHTRqu1vuPLKCOC4
+      - name: kube:admin/api-crc-testing:6443
+        user:
+          token: XoFJFq3FbpI20lfZKUucpSenlSWkum-QIv8TW2buuuk
     version: '3.9.103'
-    cmd: 'get pods -l name=test'
-    condition: 'not_exists'
-    resource: 'pods -l name=test22'
+    cmd: 'get pods'
