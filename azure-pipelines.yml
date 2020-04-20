@@ -28,4 +28,4 @@ steps:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
     version: '3.11'
-    cmd: 'version'
+    cmd: 'oc logs $(oc get pods -l name=test -o name)'
