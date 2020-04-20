@@ -32,3 +32,4 @@ steps:
     condition: 'not_exists'
     resource: 'pods -l name=test'
     timedout: '10000'
+    noTimedOutError: true
