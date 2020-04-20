@@ -27,5 +27,5 @@ steps:
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.9.103'
-    cmd: 'get pods'
+    version: 'https://mirror.openshift.com/pub/openshift-v3/clients/3.5.0.34/linux/oc.tar.gz'
+    cmd: 'version'
