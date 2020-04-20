@@ -23,13 +23,9 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-conditional-cmd@2
+- task: oc-cmd@2
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.9.103'
-    cmd: 'get pods -l name=test'
-    condition: 'not_exists'
-    resource: 'pods -l name=test'
-    timedout: '10000'
-    noTimedOutError: true
+    version: '3.11'
+    cmd: 'get pods'
