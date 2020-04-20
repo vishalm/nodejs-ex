@@ -28,7 +28,7 @@ steps:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
     version: '3.9.103'
-    cmd: 'oc new-app nodejs-ex -l name=test'
+    cmd: 'oc new-app https://github.com/sclorg/nodejs-ex -l name=test'
 - task: oc-conditional-cmd@2
   inputs:
     connectionType: 'Runtime Configuration'
