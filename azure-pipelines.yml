@@ -30,4 +30,4 @@ steps:
     version: '3.9.103'
     cmd: 'get pods -l name=test'
     condition: 'not_exists'
-    resource: 'pods -l name=test -o name'
+    resource: 'pods -l name=test22'
