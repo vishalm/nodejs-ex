@@ -23,7 +23,7 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-conditional-cmd@2
+- task: OcConditionalCmd@2
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
@@ -31,3 +31,4 @@ steps:
     cmd: 'get pods'
     condition: 'not_exists'
     resource: 'pods -l name=test'
+    
