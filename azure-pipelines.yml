@@ -23,11 +23,7 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-conditional-cmd@2
+- task: Cache@2
   inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.9.103'
-    cmd: 'get pods -l name=test'
-    condition: 'exists'
-    resource: 'pods -l name=test'
+    key: 'dsad'
+    path: 'dsa'
