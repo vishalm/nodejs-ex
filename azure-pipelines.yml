@@ -28,6 +28,6 @@ steps:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
     version: '3.9.103'
-    cmd: 'get pods -l name=test'
+    cmd: 'get pods'
     condition: 'not_exists'
-    resource: 'get pods -l name=test'
+    resource: 'pods -l name=test'
