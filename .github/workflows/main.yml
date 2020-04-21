@@ -1,6 +1,10 @@
 name: CI
 on: [push]
 
+env:
+  PROJECT: pods
+  IMAGE: hello-python
+
 jobs:
   build:
    
@@ -11,10 +15,10 @@ jobs:
       uses: redhat-developer/openshift-actions@v2.0
       with:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        parameters: '{"username": "${{ secrets.USERNAME }}", "password": "${{ secrets.PASSWORD }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'version'
-          'get pods'
+          'get ${PROJECT}'
         useLocalOc: 'true'
       
 
