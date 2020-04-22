@@ -27,14 +27,6 @@ steps:
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.9.103'
-    cmd: 'oc new-app https://github.com/sclorg/nodejs-ex -l app=test'
-- task: OcConditionalCmd@2
-  inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.9.103'
-    cmd: 'oc logs $(oc get bc -l app=test -o name)'
-    condition: 'exists'
-    resource: 'pods -l app=test'
+    version: 'https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz'
+    cmd: 'oc get pods'
     
