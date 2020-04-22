@@ -23,10 +23,8 @@ pool:
   name: 'Default'
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
+    openshiftService: 'My Openshift'
     version: 'https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz'
-    cmd: 'oc get pods'
     
