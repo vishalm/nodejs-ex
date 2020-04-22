@@ -23,12 +23,18 @@ pool:
   name: 'Default'
 
 steps:
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'Runtime Configuration'
+    configurationPath: '/home/luca/Documents/testconfig'
+    version: '3.9.103'
+    cmd: 'oc new-app https://github.com/sclorg/nodejs-ex -l app=test'
 - task: OcConditionalCmd@2
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
     version: '3.9.103'
-    cmd: 'get pods'
+    cmd: 'oc logs $(oc get bc -l app=test -o name)'
     condition: 'not_exists'
-    resource: 'pods -l app=ui'
+    resource: 'pods -l app=test'
     
