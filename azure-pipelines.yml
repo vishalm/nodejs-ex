@@ -23,10 +23,13 @@ pool:
   name: 'Default' 
 
 steps:
-- task: oc-setup@2
+- task: OcConditionalCmd@2
   inputs:
+    connectionType: 'OpenShift Connection Service'
     openshiftService: 'CRC'
-    version: '4.3'
-- script: oc get pods
+    version: '3.9.103'
+    cmd: 'get pods'
+    condition: 'exists'
+    resource: 'pods -l app=ui'
 
     
