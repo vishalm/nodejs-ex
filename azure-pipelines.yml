@@ -30,8 +30,6 @@ steps:
     version: '3.9.103'
     cmd: 'get pods'
     condition: 'not_exists'
-    resource: 'pods -l tekton.dev/taskRun=hello3-run-zf9bj'
-    timedout: 10000
-    noTimedOutError: true
+    resource: 'pod spring-petclinic-1-deploy'
 
     
