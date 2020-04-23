@@ -23,9 +23,10 @@ pool:
   name: 'Default' 
 
 steps:
-- task: oc-cmd@2
+- task: oc-setup@2
   inputs:
     openshiftService: 'CRC'
-    cmd: 'version'
-    uselocalOc: true
+    version: '4.3'
+- script: oc version
+
     
