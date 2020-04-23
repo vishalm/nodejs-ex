@@ -30,6 +30,7 @@ steps:
     version: '3.9.103'
     cmd: 'get pods'
     condition: 'not_exists'
-    resource: 'pods -l app=ui'
+    resource: 'pods -l tekton.dev/taskRun=hello3-run-zf9bj'
+    timedout: 10000
 
     
