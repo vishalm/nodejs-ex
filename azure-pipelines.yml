@@ -27,6 +27,7 @@ steps:
   inputs:
     openshiftService: 'CRC'
     version: '4.3'
+    uselocalOc: true
 - script: oc version
 
     
