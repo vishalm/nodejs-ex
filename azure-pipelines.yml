@@ -32,5 +32,6 @@ steps:
     condition: 'not_exists'
     resource: 'pods -l tekton.dev/taskRun=hello3-run-zf9bj'
     timedout: 10000
+    noTimedOutError: true
 
     
