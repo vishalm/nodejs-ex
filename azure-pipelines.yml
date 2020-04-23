@@ -28,14 +28,6 @@ steps:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'CRC'
     version: '3.9.103'
-    cmd: 'oc new-app https://github.com/sclorg/nodejs-ex -l app=test'
-- task: OcConditionalCmd@2
-  inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'CRC'
-    version: '3.9.103'
-    cmd: 'get pods'
-    condition: 'exists'
-    resource: 'pods -l app=test'
+    cmd: 'oc describe $(oc get pod app-deploy-run-w97zr-taskmame-gszfb-pod-pwjwf -o name)'
 
     
