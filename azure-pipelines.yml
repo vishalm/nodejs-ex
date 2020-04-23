@@ -29,7 +29,7 @@ steps:
     openshiftService: 'CRC'
     version: '3.9.103'
     cmd: 'get pods'
-    condition: 'not_exists'
-    resource: 'pod app-deploy-run-6ttw7-taskmame-mjxfc-pod-mg4r2'
+    condition: 'exists'
+    resource: 'pod hello-openshift'
 
     
