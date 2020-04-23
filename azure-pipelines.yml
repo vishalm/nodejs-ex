@@ -29,7 +29,7 @@ steps:
     openshiftService: 'CRC'
     version: '3.9.103'
     cmd: 'get pods'
-    condition: 'exists'
-    resource: 'pods -l tekton.dev/taskRun=hello3-run-zf9bj'
+    condition: 'not_exists'
+    resource: 'pods -l app=ui'
 
     
