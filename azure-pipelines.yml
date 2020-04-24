@@ -28,30 +28,6 @@ steps:
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
-    version: '4.1'
-    cmd: 'version'
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.7'
-    cmd: 'oc version'
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    version: '3.7'
-    cmd: 'oc describe $(oc get pod app-deploy-run-w97zr-taskmame-gszfb-pod-pwjwf -o name)'
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    cmd: 'version'
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
-    version: '4.1.6'
     cmd: 'version'
 
     
