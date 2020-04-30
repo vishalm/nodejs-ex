@@ -26,8 +26,8 @@ pool:
 steps:
 - task: oc-cmd@2
   inputs:
-    connectionType: 'Runtime Configuration'
-    configurationPath: '/home/luca/Documents/testconfig'
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'CRC'
     cmd: 'get pods'
 
     
