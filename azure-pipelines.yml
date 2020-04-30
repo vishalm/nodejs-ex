@@ -29,5 +29,6 @@ steps:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
     cmd: 'version'
+    version: '3.11.3'
 
     
