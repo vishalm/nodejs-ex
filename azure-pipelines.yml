@@ -28,6 +28,6 @@ steps:
   inputs:
     connectionType: 'Runtime Configuration'
     configurationPath: '/home/luca/Documents/testconfig'
-    cmd: 'version'
+    cmd: 'get pods'
 
     
