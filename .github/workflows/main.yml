@@ -1,24 +1,20 @@
 name: CI
 on: [push]
 
-env:
-  PROJECT: pods
-  IMAGE: hello-python
-
 jobs:
   build:
    
     runs-on: [self-hosted]
 
     steps:
-    - name: OpenShift Action
-      uses: redhat-developer/openshift-actions@v2.0
+    - name: TestLucaAction
+      uses: lstocchi/openshift-actions@1.6.5
       with:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-        parameters: '{"username": "${{ secrets.USERNAME }}", "password": "${{ secrets.PASSWORD }}", "acceptUntrustedCerts": "true"}'
+        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'version'
           'get ${PROJECT}'
-        useLocalOc: 'true'
+        version: '4.4'
       
 
