@@ -10,7 +10,7 @@ jobs:
     - name: TestLucaAction
       uses: lstocchi/openshift-actions@1.6.9
       with:
-        version: '3.11.90'
+        version: '3.11.30'
     - name: scripttest
       run: |
         oc login --token=${{ secrets.API_TOKEN }} --server=${{ secrets.OPENSHIFT_SERVER_URL }}
