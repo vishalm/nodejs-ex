@@ -13,6 +13,7 @@ jobs:
         version: '3.11.90'
     - name: scripttest
       run: |
+        oc login --token=${{ secrets.API_TOKEN }} --server=${{ secrets.OPENSHIFT_SERVER_URL }}
         oc get pods
         oc get pods | grep build
       
