@@ -10,8 +10,6 @@ jobs:
     - name: TestLucaAction
       uses: lstocchi/openshift-actions@1.6.9
       with:
-        openshift_server_url: ${{ secrets.OCP_TRIAL_JULY }}
-        parameters: '{"apitoken": "${{ secrets.TOKEN_TRIAL_JULY }}", "acceptUntrustedCerts": "true"}'
         version: '3.11.90'
     - name: scripttest
       run: |
