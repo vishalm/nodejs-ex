@@ -42,11 +42,11 @@ jobs:
         oc run mydc --image=registry.access.redhat.com/ubi8/ubi --generator=run-pod/v1 --command=true sleep 3600
         while (echo && oc get pods | grep -v -E "(Running|Completed|STATUS)");do sleep 5; done
         oc exec mydc cat /etc/resolv.conf
-        oc exec mydc curl -v -k https://google.com
+        oc exec mydc -- curl -v https://google.com
         oc get pods
         oc exec mydc -c kubedns -- nslookup google.com 127.0.0.1
         oc exec mydc -c kubedns -- nslookup kubernetes 127.0.0.1
-        oc exec mydc curl https://google.com
-        oc exec mydc curl https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+        oc exec mydc -- curl https://google.com
+        oc exec mydc -- curl https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
 
         
