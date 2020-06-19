@@ -28,7 +28,7 @@ jobs:
         cat /etc/docker/daemon.json
         cat /etc/resolv.conf
         sudo service docker restart
-        docker run registry.access.redhat.com/ubi8/ubi --dns=8.8.8.8 cat /etc/resolv.conf
+        docker run --dns=8.8.8.8 registry.access.redhat.com/ubi8/ubi cat /etc/resolv.conf
         docker run registry.access.redhat.com/ubi8/ubi curl https://repo1.maven.org  
     - uses: lstocchi/openshift-actions@1.6.12
       name: Set up oc
