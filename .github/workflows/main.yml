@@ -26,6 +26,7 @@ jobs:
         sudo mv daemon.json /etc/docker
         echo Modified content
         cat /etc/docker/daemon.json
+        echo -e "nameserver 8.8.8.8\n$(cat /etc/resolv.conf)" > /etc/resolv.conf
         sudo service docker restart
         docker run registry.access.redhat.com/ubi8/ubi cat /etc/resolv.conf
         docker run registry.access.redhat.com/ubi8/ubi curl https://repo1.maven.org  
