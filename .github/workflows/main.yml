@@ -1,21 +1,53 @@
-name: CI
-on: [push]
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
-   
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: TestLucaAction
-      uses: lstocchi/openshift-actions@1.6.12
-      with:
-        version: 'https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz'
-    - name: scripttest
-      run: |
-        oc version
-        oc login --token=${{ secrets.API_TOKEN }} --server=${{ secrets.OPENSHIFT_SERVER_URL }}
-        oc get pods
-        oc get pods | grep build
-      
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
 
+    # Runs a set of commands using the runners shell
+    - name: Setup Docker
+      run: |
+        echo Add other actions to build,
+        ls /etc/docker
+        echo Original content
+        cat /etc/docker/daemon.json
+        jq '. += {"insecure-registries": ["172.30.0.0/16"]}' /etc/docker/daemon.json >daemon.json
+        sudo mv daemon.json /etc/docker
+        echo Modified content
+        cat /etc/docker/daemon.json
+        sudo service docker restart
+        docker run registry.access.redhat.com/ubi8/ubi cat /etc/resolv.conf
+        docker run registry.access.redhat.com/ubi8/ubi curl https://repo1.maven.org  
+    - uses: lstocchi/openshift-actions@1.6.12
+      name: Set up oc
+      with:
+        version: 'https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz'
+    - name: Start cluster
+      run: |
+        oc cluster up
+        oc login -u system:admin
+        oc get cm -n kube-dns
+        oc login -u developer -p dummy
+        oc run mydc --image=registry.access.redhat.com/ubi8/ubi --generator=run-pod/v1 --command=true sleep 3600
+        while (echo && oc get pods | grep -v -E "(Running|Completed|STATUS)");do sleep 5; done
+        oc exec mydc cat /etc/resolv.conf
+        oc exec mydc curl https://redhat.com
+        
