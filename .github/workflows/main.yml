@@ -44,6 +44,7 @@ jobs:
         oc login -u developer -p dummy
         oc run mydc --image=registry.access.redhat.com/ubi8/ubi --generator=run-pod/v1 --command=true sleep 3600
         while (echo && oc get pods | grep -v -E "(Running|Completed|STATUS)");do sleep 5; done
+        oc exec mydc -- sudo echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
         oc exec mydc cat /etc/resolv.conf
         oc get pods
         oc exec mydc -- curl https://google.com
