@@ -28,7 +28,7 @@ jobs:
         cat /etc/docker/daemon.json
         cat /etc/resolv.conf
         echo iptables
-        sudo iptables -L
+        sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
         sudo service docker restart
         docker run registry.access.redhat.com/ubi8/ubi cat /etc/resolv.conf
         docker run registry.access.redhat.com/ubi8/ubi curl https://repo1.maven.org  
