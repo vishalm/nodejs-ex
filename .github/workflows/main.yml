@@ -4,7 +4,7 @@ name: CI
 on: [push]
 
 env:
-  PROJECT: hello-world
+  PROJECT: tektondemo
   DOCKERIMAGE: node:10
   APPNAME: myapp
 
@@ -26,7 +26,7 @@ jobs:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
         parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
-          oc project ${PROJECT} || oc new-project ${PROJECT}
+          oc project ${PROJECT}
           oc new-build --strategy docker --binary --docker-image ${DOCKERIMAGE} --name ${APPNAME}
           oc start-build ${APPNAME} --from-dir . --follow
           oc new-app ${PROJECT}/${APPNAME}:latest
