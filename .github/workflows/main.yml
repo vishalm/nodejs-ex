@@ -28,7 +28,7 @@ jobs:
         cmd: |
           oc project ${PROJECT}
           oc new-build --strategy docker --binary --docker-image ${DOCKERIMAGE} --name ${APPNAME}
-          oc start-build ${APPNAME} --from-dir . --follow
+          oc start-build ${APPNAME} --from-dir $GITHUB_WORKSPACE --follow
           oc new-app ${PROJECT}/${APPNAME}:latest
           oc expose svc/"${APPNAME}"
 
