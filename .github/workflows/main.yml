@@ -26,8 +26,7 @@ jobs:
         openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
         parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
-          oc project ${PROJECT}
-          oc new-build --strategy docker --binary --docker-image ${DOCKERIMAGE} --name ${APPNAME}
+          oc project ${PROJECT}          
           oc start-build ${APPNAME} --from-dir $GITHUB_WORKSPACE --follow
           oc new-app ${PROJECT}/${APPNAME}:latest
           oc expose svc/"${APPNAME}"
