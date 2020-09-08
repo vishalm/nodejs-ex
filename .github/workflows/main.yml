@@ -7,7 +7,6 @@ env:
   PROJECT: tektondemo
   DOCKERIMAGE: node:10
   APPNAME: myapp
-  OUTPUT_PATH: $GITHUB_WORKSPACE
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,7 +27,7 @@ jobs:
         parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           oc project ${PROJECT}          
-          oc start-build ${APPNAME} --from-repo ${OUTPUT_PATH} --follow
+          oc start-build ${APPNAME} --from-repo ${GITHUB_WORKSPACE} --follow
           oc new-app ${PROJECT}/${APPNAME}:latest
           oc expose svc/"${APPNAME}"
 
