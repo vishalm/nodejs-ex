@@ -4,7 +4,7 @@ name: CI
 on: [push]
 
 env:
-  PROJECT: hello-world
+  PROJECT: pipelines-tutorial
   APP_NAME: myapp
 
 jobs:
