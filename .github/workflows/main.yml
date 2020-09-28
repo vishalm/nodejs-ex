@@ -4,32 +4,30 @@ name: CI
 on: [push]
 
 env:
-  PROJECT: pipelines-tutorial
-  DOCKERIMAGE: node:10
-  APPNAME: myapp
+  PROJECT: hello-world
+  APP_NAME: myapp
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: self-hosted
+    name: Setup and Deploy
+    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.1.0
       with:
         version: '4.3'
-        openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
-        parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           oc project ${PROJECT}
-    - name: check with oc
+          oc new-app ${GITHUB_WORKSPACE} --name ${APP_NAME}
+    - name: Execute oc commands
       run: |
         oc version
-        oc get pods
+        oc expose svc/${{ env.APP_NAME }}
 
         
