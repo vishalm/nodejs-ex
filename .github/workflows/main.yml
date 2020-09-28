@@ -4,7 +4,7 @@ name: CI
 on: [push]
 
 env:
-  PROJECT: tektondemo
+  PROJECT: pipelines-tutorial
   DOCKERIMAGE: node:10
   APPNAME: myapp
 
@@ -22,14 +22,11 @@ jobs:
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.1.0
       with:
-        version: '3.11.230'
+        version: '4.3'
         openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
         parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           oc project ${PROJECT}  
-          oc new-build --strategy docker --binary --docker-image ${DOCKERIMAGE} --name ${APPNAME}        
-          oc start-build ${APPNAME}:latest --from-repo ${GITHUB_WORKSPACE} --follow
-          oc new-app -i ${PROJECT}/${APPNAME}:latest
-          oc expose svc/"${APPNAME}"
+          oc new-app ${GITHUB_WORKSPACE} --name ${APPNAME}
 
         
