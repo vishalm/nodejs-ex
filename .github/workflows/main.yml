@@ -26,7 +26,10 @@ jobs:
         openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
         parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
         cmd: |
-          oc project ${PROJECT}  
-          oc new-app ${GITHUB_WORKSPACE} --name ${APPNAME}
+          oc project ${PROJECT}
+    - name: check with oc
+      run: |
+        oc version
+        oc get pods
 
         
