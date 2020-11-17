@@ -16,17 +16,27 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: OpenShift Action
-      uses: redhat-developer/openshift-actions@v2.1.0
+    - name: Install oc
+      uses: redhat-actions/oc-installer@v1
       with:
         version: '4.3'
+    - name: Authenticate and set context
+      uses: redhat-actions/oc-login@v0.0.1
+      with:
+        # URL to your OpenShift cluster.
+        # Refer to Step 2.
         openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
-        parameters: '{"apitoken": "${{ secrets.CRC_TOKEN }}", "acceptUntrustedCerts": "true"}'
-        cmd: |
-          oc project ${PROJECT}
-          oc new-app ${GITHUB_WORKSPACE} --name ${APP_NAME}
+
+        # Authentication Token. Can use username and password instead.
+        # Refer to Step 3.
+        openshift_token: ${{ secrets.CRC_TOKEN }}
+
+        # Disables SSL cert checking. Use this if you don't have the certificate authority data.
+        insecure_skip_tls_verify: true          
     - name: Execute oc commands
       run: |
+        oc project ${PROJECT}
+        oc new-app ${GITHUB_WORKSPACE} --name ${APP_NAME}
         oc version
         oc expose svc/${{ env.APP_NAME }}
 
