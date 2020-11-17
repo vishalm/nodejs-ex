@@ -19,22 +19,10 @@ jobs:
     - name: Install oc
       uses: redhat-actions/oc-installer@v1
       with:
-        version: '4.3'
-    - name: Authenticate and set context
-      uses: redhat-actions/oc-login@v0.0.1
-      with:
-        # URL to your OpenShift cluster.
-        # Refer to Step 2.
-        openshift_server_url: ${{ secrets.CRC_OPENSHIFT_URL }}
-
-        # Authentication Token. Can use username and password instead.
-        # Refer to Step 3.
-        openshift_token: ${{ secrets.CRC_TOKEN }}
-
-        # Disables SSL cert checking. Use this if you don't have the certificate authority data.
-        insecure_skip_tls_verify: true          
+        version: '4.3'         
     - name: Execute oc commands
       run: |
+        oc login --insecure-skip-tls-verify --token ${{ secrets.CRC_TOKEN }} ${{ secrets.CRC_OPENSHIFT_URL }}
         oc project ${PROJECT}
         oc new-app ${GITHUB_WORKSPACE} --name ${APP_NAME}
         oc version
