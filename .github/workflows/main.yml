@@ -15,17 +15,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Install oc
-      uses: redhat-actions/oc-installer@v1
-      with:
-        version: '4.3'         
-    - name: Execute oc commands
-      run: |
-        oc login --insecure-skip-tls-verify --token ${{ secrets.CRC_TOKEN }} ${{ secrets.CRC_OPENSHIFT_URL }}
-        oc project ${PROJECT}
-        oc new-app ${GITHUB_WORKSPACE} --name ${APP_NAME}
-        oc version
-        oc expose svc/${{ env.APP_NAME }}
+    - run: |
+        echo '$GITHUB_WORKSPACE'
 
         
