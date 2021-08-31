@@ -18,3 +18,15 @@ steps:
 
 - script: npm install
   displayName: 'npm install'
+
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'Openshift'
+    cmd: 'oc start-build nodejs-ex --follow'
+
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'Openshift'
+    cmd: 'oc status'
