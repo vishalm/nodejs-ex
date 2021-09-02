@@ -49,14 +49,18 @@ steps:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'Openshift'
     cmd: 'oc project vishal-k-mishra-stage'
+  displayName: 'Switch to Stage'
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'Openshift'
     cmd: 'oc start-build nodejs-ex --follow'
+  displayName: 'Build and Deploy'
 
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'Openshift'
     cmd: 'oc status'
+  displayName: 'Deployed'
+
