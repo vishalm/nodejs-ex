@@ -63,4 +63,4 @@ steps:
     testResultsFiles: 'junit.xml'
     mergeTestResults: true
     failTaskOnFailedTests: true
-    testRunTitle: 'Unit Test'
+    testRunTitle: 'Functional Test'
