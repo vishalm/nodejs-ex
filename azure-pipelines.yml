@@ -54,3 +54,14 @@ steps:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'Openshift'
     cmd: 'oc status'
+    
+
+- script: npm test
+  displayName: 'Functional test'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'junit.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'Functional Test'
