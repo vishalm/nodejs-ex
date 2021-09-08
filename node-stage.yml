@@ -64,3 +64,12 @@ steps:
     cmd: 'oc status'
   displayName: 'Deployed'
 
+- script: npm test
+  displayName: 'Functional test'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'junit.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'Functional Test'
