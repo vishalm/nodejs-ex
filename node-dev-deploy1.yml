@@ -1,4 +1,5 @@
-trigger: none
+trigger: 
+- master
 
 pool:
   vmImage: ubuntu-latest
@@ -72,7 +73,7 @@ stages:
               openshiftService: 'Openshift'
               cmd: 'oc status'
 
-- stage: Functional Test
+- stage: FunctionalTest
   dependsOn:
   - Prep
   - Tests
