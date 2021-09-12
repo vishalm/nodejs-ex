@@ -8,7 +8,7 @@ stages:
 - stage: Tests
   jobs:
   - job: 
-    displayName: 'Sonar Connection'
+    displayName: 'Tests and Sonar Quality Gate'
     steps:
     - task: SonarCloudPrepare@1
       inputs:
