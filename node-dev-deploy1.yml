@@ -79,7 +79,7 @@ stages:
   - Dev
   jobs:
   - job:
-    displayName: Functional Tests
+    displayName: 'Functional Tests'
     steps:
     - script: npm test
       displayName: 'Functional test'
