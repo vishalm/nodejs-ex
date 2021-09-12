@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: Unit Tests
+- stage: Tests
   jobs:
   - job: 
     displayName: 'Sonar Connection'
@@ -42,7 +42,6 @@ stages:
 
 - stage: Dev
   dependsOn:
-  - Prep
   - Tests
   jobs:
   - deployment:
@@ -65,7 +64,6 @@ stages:
 
 - stage: FunctionalTest
   dependsOn:
-  - Prep
   - Tests
   - Dev
   jobs:
