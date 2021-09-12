@@ -5,10 +5,10 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: Prep
+- stage: Unit Tests
   jobs:
   - job: 
-    displayName: 'Prerequisits Sonar Connection, Node 12, npm install'
+    displayName: 'Sonar Connection'
     steps:
     - task: SonarCloudPrepare@1
       inputs:
@@ -23,15 +23,8 @@ stages:
       inputs:
         versionSpec: '10.x'
       displayName: 'Install Node.js'
-
     - script: npm install
       displayName: 'npm install'
-
-- stage: Tests
-  jobs:
-  - job: 
-    displayName: Unit tests
-    steps:
     - script: npm test
       displayName: 'Run unit tests'
     - task: PublishTestResults@2
@@ -41,9 +34,6 @@ stages:
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Unit Test'
-  - job: 
-    displayName: Sonar report
-    steps:
     - task: SonarCloudAnalyze@1
 
     - task: SonarCloudPublish@1
@@ -82,6 +72,8 @@ stages:
   - job:
     displayName: 'Functional Tests'
     steps:
+    - script: npm install
+      displayName: 'Functional test'
     - script: npm test
       displayName: 'Functional test'
     - task: PublishTestResults@2
