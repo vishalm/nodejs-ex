@@ -8,7 +8,7 @@ stages:
 - stage: Prep
   jobs:
   - job: 
-    displayName: Prep
+    displayName: 'Prerequisits Sonar Connection, Node 12, npm install'
     steps:
     - task: SonarCloudPrepare@1
       inputs:
