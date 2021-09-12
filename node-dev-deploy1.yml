@@ -81,3 +81,41 @@ stages:
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Functional Test'
+- stage: LoadTests
+  dependsOn:
+  - Tests
+  - Dev
+  jobs:
+  - job:
+    displayName: 'Load Tests'
+    steps:
+    - script: npm install
+      displayName: 'Load test'
+    - script: npm test
+      displayName: 'Load test'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit.xml'
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: 'Load Test'
+- stage: SecurityTests
+  dependsOn:
+  - Tests
+  - Dev
+  jobs:
+  - job:
+    displayName: 'Security Tests'
+    steps:
+    - script: npm install
+      displayName: 'Security test'
+    - script: npm test
+      displayName: 'Security test'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit.xml'
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: 'Security Test'
