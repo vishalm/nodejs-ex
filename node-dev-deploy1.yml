@@ -1,0 +1,83 @@
+trigger: 
+- dev
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Tests
+  jobs:
+  - job: 
+    displayName: 'Sonar Connection'
+    steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'sonar cloud'
+        organization: 'vishalmishra84'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'vishalmishra84_nodejs-ex'
+        cliProjectName: 'nodejs-ex'
+        cliSources: '.'
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js'
+    - script: npm install
+      displayName: 'npm install'
+    - script: npm test
+      displayName: 'Run unit tests'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit.xml'
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: 'Unit Test'
+    - task: SonarCloudAnalyze@1
+
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
+
+- stage: Dev
+  dependsOn:
+  - Tests
+  jobs:
+  - deployment:
+    displayName: Dev deploy
+    environment: Dev
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+         - task: oc-cmd@2
+           inputs:
+              connectionType: 'OpenShift Connection Service'
+              openshiftService: 'Openshift'
+              cmd: 'oc start-build nodejs-ex --follow'
+         - task: oc-cmd@2
+           inputs:
+              connectionType: 'OpenShift Connection Service'
+              openshiftService: 'Openshift'
+              cmd: 'oc status'
+
+- stage: FunctionalTest
+  dependsOn:
+  - Tests
+  - Dev
+  jobs:
+  - job:
+    displayName: 'Functional Tests'
+    steps:
+    - script: npm install
+      displayName: 'Functional test'
+    - script: npm test
+      displayName: 'Functional test'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit.xml'
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: 'Functional Test'
