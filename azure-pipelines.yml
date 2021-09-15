@@ -90,7 +90,7 @@ stages:
     displayName: 'Load Tests'
     steps:
     - script: |
-        git checkout https://github.com/vishalm/locust_101.git
+        git clone https://github.com/vishalm/locust_101.git
         pip install locust
         locust -f locustfile.py --headless -u 500 -r 10 --run-time 5m --host=http://nodejs-ex-vishal-k-mishra-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
       displayName: 'Load test'
