@@ -93,6 +93,7 @@ stages:
         git clone https://github.com/vishalm/locust_101.git
         cd locust_101
         pip install locust
+        sleep 2m
         locust -f locustfile.py --headless -u 500 -r 10 --run-time 10m --host=http://nodejs-ex-vishal-k-mishra-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com || exit 0
       displayName: 'Load test'
 - stage: SecurityTests
