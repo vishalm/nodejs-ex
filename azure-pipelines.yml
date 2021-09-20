@@ -85,6 +85,10 @@ stages:
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Functional Test'
+    - task: AllureGenerate@1
+      inputs:
+        resultsDir: 'allure-results'
+        targetDir: 'mocha-wdio-demo/report/allure-results/$(Build.BuildNumber)'
 - stage: LoadTests
   dependsOn:
   - Tests
