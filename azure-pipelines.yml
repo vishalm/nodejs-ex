@@ -76,13 +76,12 @@ stages:
         cd mocha-wdio-demo
         npm install
         npm run test.azd
-      displayName: 'Functional test'
-    - script: npm test
-      displayName: 'Functional test'
+      displayName: 'UI Functional test'
+
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '*-results.xml'
+        testResultsFiles: '*.xml'
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Functional Test'
