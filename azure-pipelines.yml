@@ -40,32 +40,32 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
-- stage: Dev
-  dependsOn:
-  - Tests
-  jobs:
-  - deployment:
-    displayName: Dev deploy
-    environment: Dev
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-         - task: oc-cmd@2
-           inputs:
-              connectionType: 'OpenShift Connection Service'
-              openshiftService: 'Openshift'
-              cmd: 'oc start-build nodejs-ex --follow'
-         - task: oc-cmd@2
-           inputs:
-              connectionType: 'OpenShift Connection Service'
-              openshiftService: 'Openshift'
-              cmd: 'oc status'
+# - stage: Dev
+#   dependsOn:
+#   - Tests
+#   jobs:
+#   - deployment:
+#     displayName: Dev deploy
+#     environment: Dev
+#     strategy:
+#      runOnce:
+#        deploy:
+#          steps:
+#          - task: oc-cmd@2
+#            inputs:
+#               connectionType: 'OpenShift Connection Service'
+#               openshiftService: 'Openshift'
+#               cmd: 'oc start-build nodejs-ex --follow'
+#          - task: oc-cmd@2
+#            inputs:
+#               connectionType: 'OpenShift Connection Service'
+#               openshiftService: 'Openshift'
+#               cmd: 'oc status'
 
 - stage: FunctionalTest
   dependsOn:
   - Tests
-  - Dev
+  # - Dev
   jobs:
   - job:
     displayName: 'Functional Tests'
@@ -84,7 +84,7 @@ stages:
 - stage: LoadTests
   dependsOn:
   - Tests
-  - Dev
+  # - Dev
   jobs:
   - job:
     displayName: 'Load Tests'
@@ -99,19 +99,16 @@ stages:
 - stage: SecurityTests
   dependsOn:
   - Tests
-  - Dev
+  # - Dev
   jobs:
   - job:
     displayName: 'Security Tests'
     steps:
-    - script: npm install
-      displayName: 'Security test'
-    - script: npm test
-      displayName: 'Security test'
-    - task: PublishTestResults@2
+    - task: SnykSecurityScan@1
       inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: 'junit.xml'
-        mergeTestResults: true
-        failTaskOnFailedTests: true
-        testRunTitle: 'Security Test'
+        serviceConnectionEndpoint: 'snykconn'
+        testType: 'app'
+        targetFile: 'junit.xml'
+        monitorWhen: 'always'
+        failOnIssues: false
+        organization: '6bec4270-e52e-49b3-b8a7-a8da7c997960'
