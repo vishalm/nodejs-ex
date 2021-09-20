@@ -81,7 +81,7 @@ stages:
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '*.xml'
+        testResultsFiles: 'mocha-wdio-demo/*.xml'
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Functional Test'
