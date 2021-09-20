@@ -85,11 +85,6 @@ stages:
         mergeTestResults: true
         failTaskOnFailedTests: true
         testRunTitle: 'Functional UI Test'
-    - task: AllureGenerate@1
-      inputs:
-        resultsDir: 'allure-results'
-        targetDir: 'mocha-wdio-demo/report/allure-results/$(Build.BuildNumber)'
-      displayName: 'Allure Report UI Test'
 - stage: LoadTests
   dependsOn:
   - Tests
