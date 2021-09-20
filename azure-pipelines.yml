@@ -40,32 +40,32 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
-# - stage: Dev
-#   dependsOn:
-#   - Tests
-#   jobs:
-#   - deployment:
-#     displayName: Dev deploy
-#     environment: Dev
-#     strategy:
-#      runOnce:
-#        deploy:
-#          steps:
-#          - task: oc-cmd@2
-#            inputs:
-#               connectionType: 'OpenShift Connection Service'
-#               openshiftService: 'Openshift'
-#               cmd: 'oc start-build nodejs-ex --follow'
-#          - task: oc-cmd@2
-#            inputs:
-#               connectionType: 'OpenShift Connection Service'
-#               openshiftService: 'Openshift'
-#               cmd: 'oc status'
+- stage: Dev
+  dependsOn:
+  - Tests
+  jobs:
+  - deployment:
+    displayName: Dev deploy
+    environment: Dev
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+         - task: oc-cmd@2
+           inputs:
+              connectionType: 'OpenShift Connection Service'
+              openshiftService: 'Openshift'
+              cmd: 'oc start-build nodejs-ex --follow'
+         - task: oc-cmd@2
+           inputs:
+              connectionType: 'OpenShift Connection Service'
+              openshiftService: 'Openshift'
+              cmd: 'oc status'
 
 - stage: FunctionalTest
   dependsOn:
   - Tests
-  # - Dev
+  - Dev
   jobs:
   - job:
     displayName: 'Functional Tests'
@@ -84,22 +84,22 @@ stages:
 - stage: LoadTests
   dependsOn:
   - Tests
-  # - Dev
+  - Dev
   jobs:
   - job:
     displayName: 'Load Tests'
     steps:
     - script: |
-        # git clone https://github.com/vishalm/locust_101.git
-        # cd locust_101
-        # pip install locust
-        # sleep 2m
-        # locust -f locustfile.py --headless -u 500 -r 10 --run-time 5m --host=http://nodejs-ex-vishal-k-mishra-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com || exit 0
+        git clone https://github.com/vishalm/locust_101.git
+        cd locust_101
+        pip install locust
+        sleep 2m
+        locust -f locustfile.py --headless -u 500 -r 10 --run-time 5m --host=http://nodejs-ex-vishal-k-mishra-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com || exit 0
       displayName: 'Load test'
 - stage: SecurityTests
   dependsOn:
   - Tests
-  # - Dev
+  - Dev
   jobs:
   - job:
     displayName: 'Security Tests'
