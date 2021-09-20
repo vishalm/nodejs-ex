@@ -62,13 +62,13 @@ stages:
               openshiftService: 'Openshift'
               cmd: 'oc status'
 
-- stage: FunctionalTest
+- stage: FunctionalUITest
   dependsOn:
   - Tests
   - Dev
   jobs:
   - job:
-    displayName: 'Functional Tests'
+    displayName: 'Functional UI Tests'
     steps:
     - script: |
         docker run -d -p 4444:4444 selenium/standalone-chrome
@@ -76,7 +76,7 @@ stages:
         cd mocha-wdio-demo
         npm install
         npm run test.azd
-      displayName: 'UI Functional test'
+      displayName: 'Functional UI test'
 
     - task: PublishTestResults@2
       inputs:
@@ -84,11 +84,12 @@ stages:
         testResultsFiles: 'mocha-wdio-demo/report/junit/*.xml'
         mergeTestResults: true
         failTaskOnFailedTests: true
-        testRunTitle: 'Functional Test'
+        testRunTitle: 'Functional UI Test'
     - task: AllureGenerate@1
       inputs:
         resultsDir: 'allure-results'
         targetDir: 'mocha-wdio-demo/report/allure-results/$(Build.BuildNumber)'
+      displayName: 'Allure Report UI Test'
 - stage: LoadTests
   dependsOn:
   - Tests
