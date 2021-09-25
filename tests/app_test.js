@@ -36,4 +36,13 @@ describe('Basic routes tests', function() {
             done();
         })
     })
+
+    it('GET to /demo should return 200', function(done){
+        chai.request(reqServer)
+        .get('/demo')
+        .end(function(err, res) {
+            res.should.have.status(200);
+            done();
+        })
+    })
 })

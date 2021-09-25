@@ -115,6 +115,13 @@ app.get('/products', (req, res) =>{
   res.status(200).send(products)
 })
 
+network_info ={ip: ip,
+  port: port}
+  
+app.get('/demo', (req, res) =>{
+  res.status(200).send(network_info)
+})
+
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
