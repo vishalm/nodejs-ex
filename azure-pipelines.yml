@@ -80,7 +80,6 @@ stages:
         cd mocha-wdio-demo
         npm install
         npm run test.azd
-        npm run report.ci
       displayName: 'Functional UI test'
     - task: PublishTestResults@2
       inputs:
