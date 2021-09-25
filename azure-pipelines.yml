@@ -84,6 +84,7 @@ stages:
         cd report
         ls -ll
         cd allure-results
+        pwd
       displayName: 'Functional UI test'
     - task: AllureGenerate@1
       inputs:
