@@ -80,6 +80,10 @@ stages:
         cd mocha-wdio-demo
         npm install
         npm run test.azd
+        ls -ll
+        cd report
+        ls -ll
+        cd allure-results
       displayName: 'Functional UI test'
     - task: AllureGenerate@1
       inputs:
