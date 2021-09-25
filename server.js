@@ -122,6 +122,19 @@ app.get('/demo', (req, res) =>{
   res.status(200).send(network_info)
 })
 
+
+devops_node = {
+  devops_node: process.env.DEVOPSPROJECTNODE_PORT_8080_TCP,
+  git_info: process.env.OPENSHIFT_BUILD_SOURCE,
+  service_desc: process.env.DESCRIPTION,
+  summary: process.env.SUMMARY,
+  build_namespace: process.env.OPENSHIFT_BUILD_NAMESPACE
+}
+
+app.get('/devops_node', (req, res) =>{
+  res.status(200).send(devops_node)
+})
+
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.

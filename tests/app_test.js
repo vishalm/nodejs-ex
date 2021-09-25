@@ -45,4 +45,13 @@ describe('Basic routes tests', function() {
             done();
         })
     })
+
+    it('GET to /devops_node should return 200', function(done){
+        chai.request(reqServer)
+        .get('/devops_node')
+        .end(function(err, res) {
+            res.should.have.status(200);
+            done();
+        })
+    })
 })

@@ -75,20 +75,13 @@ stages:
     displayName: 'Functional UI Tests'
     steps:
     - script: |
-        ls -lad **/*(/)
         docker run -d -p 4444:4444 selenium/standalone-chrome
         git clone https://github.com/vishalm/mocha-wdio-demo.git
         cd mocha-wdio-demo
         npm install
         npm run test.azd
         npm run report.ci
-        ls -lad **/*(/)
       displayName: 'Functional UI test'
-    - task: AllureGenerate@1
-      inputs:
-        resultsDir: 'mocha-wdio-demo/report/allure-results'
-        targetDir: 'allure-report/$(Build.BuildNumber)'
-
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
