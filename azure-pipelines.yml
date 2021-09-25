@@ -77,6 +77,10 @@ stages:
         npm install
         npm run test.azd
       displayName: 'Functional UI test'
+    - task: AllureGenerate@1
+      inputs:
+        resultsDir: 'mocha-wdio-demo/report/allure-results'
+        targetDir: 'allure-report/$(Build.BuildNumber)'
 
     - task: PublishTestResults@2
       inputs:
