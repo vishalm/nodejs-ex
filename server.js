@@ -4,6 +4,23 @@ var express = require('express'),
     morgan  = require('morgan');
     
 Object.assign=require('object-assign')
+const products = [
+  {
+    name: 'iPhone 13',
+    color: 'White',
+    company: 'Apple'
+  },
+  {
+    name: 'OnePlus 9',
+    color: 'Blue',
+    company: 'Oneplus'
+  },
+  {
+    name: 'iPhone 12',
+    color: 'Purple',
+    company: 'Apple'
+  }
+]
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
@@ -114,6 +131,10 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/products', (req, res) =>{
+  res.status(200).send(products)
+})
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
@@ -129,5 +150,6 @@ console.log('Server running on http://%s:%s', ip, port);
 console.log(
   Array(100).fill().map(Math.random)
 );
+
 
 module.exports = app ;
