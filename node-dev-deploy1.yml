@@ -61,6 +61,10 @@ stages:
               connectionType: 'OpenShift Connection Service'
               openshiftService: 'Openshift'
               cmd: 'oc status'
+         - script: |
+            sleep 2m
+            oc rollout status deployments/nodejs-ex
+           displayName: 'Deployment Status'
 
 - stage: FunctionalTest
   dependsOn:
