@@ -128,7 +128,8 @@ devops_node = {
   git_info: process.env.OPENSHIFT_BUILD_SOURCE,
   service_desc: process.env.DESCRIPTION,
   summary: process.env.SUMMARY,
-  build_namespace: process.env.OPENSHIFT_BUILD_NAMESPACE
+  build_namespace: process.env.OPENSHIFT_BUILD_NAMESPACE,
+  openshift_build_reference: process.env.OPENSHIFT_BUILD_REFERENCE
 }
 
 app.get('/devops_node', (req, res) =>{
