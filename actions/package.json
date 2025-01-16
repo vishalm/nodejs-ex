@@ -28,7 +28,7 @@
     "@actions/core": "^1.2.0",
     "@actions/exec": "^1.0.1",
     "@actions/io": "^1.0.1",
-    "@actions/tool-cache": "^1.1.2",
+    "@actions/tool-cache": "^2.0.2",
     "@types/node": "^12.12.7",
     "argv-split": "^2.0.1",
     "mz": "^2.7.0",
